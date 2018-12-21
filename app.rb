@@ -28,18 +28,19 @@ register Sinatra::Reloader
 enable :sessions
 
 get '/' do
-  # if session[:user_id]
-  #   @user = User.find(session[:user_id])
-  #   erb :index
-  # else
-  #   erb :not_allowed
-  # end
-  erb :post
+  if session[:user_id]
+    @user = User.find(session[:user_id])
+    erb :homepage
+  else
+    erb :not_allowed
+  end
 end
 
 # erb :post
-# get '/user/post' do
-# end
+get '/user/post' do
+    @user = User.find(session[:user_id])
+    erb :post
+end
 
 # https://images.unsplash.com/photo-1525925709472-86e4e2a971e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60
 post '/user/post' do
@@ -55,9 +56,9 @@ post '/user/post' do
 end
 
 get "/allblogs" do
-  @blog_instance = Post.all
+  @user = User.find(session[:user_id])
+  @blog_instance = Post.all.reverse
   erb :my_user_post
-
 end
 # get '/user/blog/myblog' do
 #   @blog = Blog.where(user_id: session[:user_id])
@@ -118,20 +119,11 @@ get '/login' do
 end
 
 post '/users/login' do
-  user = User.create(email: params["email"], password: params["password"])
-
-# userName = params["first_name"] + params["last_name"]
 # dob to determine the horoscope
+user_instance = User.find_by(email: params["email"], password: params["password"])
 
 timeNow = Time.now
 
-  user_instance = User.create(
-    name: params["userName"],
-    email: params["email"],
-    dob: params["dob"],
-    opening: timeNow,
-    password: params["password"]
-  )
   puts ">>>>>>>>>>>>"
   puts user_instance.inspect
   puts ">>>>>>>>>>>>"
@@ -143,10 +135,14 @@ timeNow = Time.now
   end
 end
 
+# sign uo route
 
 get '/signup' do
   erb :signup
 end
+
+
+# user signup route
 
 post '/users/signup' do
   timeNow = Time.now
@@ -154,20 +150,14 @@ post '/users/signup' do
   if temp_user
     redirect '/login'
   else
-    t.string :name
-    t.string :email
-    t.datetime :dob #date of birth
-    t.datetime :opening
-    t.string :password
-    #
-    user = User.create(name: "one", email: params["email"], password: params["password"], dob: timenow, opening: timenow, password: params["password"] )
-    User.create(name: userName, email: "one@one.com", dob: noww, opening: noww, password: "123456")
-    Post.create(user_id: i, title: "One Way", image: "image1", author: "Jack", time: noww, post: userParagraph)
+    user = User.create(email: params["email"], password: params["password"])
     session[:user_id] = user.id
-    redirect '/'
+    redirect '/homepage'
   end
 end
 
+
+# logout rout
 get '/logout' do
   session[:user_id] = nil
   redirect '/login'
