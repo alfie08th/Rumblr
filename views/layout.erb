@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Carson Used Car Lot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+</head>
+<body>
+
+    <div class="ui container">
+      <h1>CARDi B</h1>
+      <br>
+      <% if @user %>
+        <a href="/" class="ui primary button">
+          Home
+        </a>
+        <a href="/sales" class="ui primary button">
+          View All Sales
+        </a>
+        <a href="/logout" class="ui primary button">
+          Logout
+        </a>
+        HI <%= @user.email %>
+      <% else %>
+        <a href="/login" class="ui primary button">
+          Login
+        </a>
+        <a href="/signup" class="ui primary button">
+          Sign Up
+        </a>
+      <% end %>
+      <br>
+      <br>
+
+      <%= yield %>
+
+    </div>
+
+
+
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <script src="/main.js"></script>
+</body>
+</html>

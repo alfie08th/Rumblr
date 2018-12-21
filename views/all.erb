@@ -1,0 +1,34 @@
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>First</th>
+      <th>Last</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Gender</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Cost Price</th>
+      <th>Sale Markup</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @all_sales.each do |sale| %>
+      <tr>
+        <td> <%= sale.customer.first_name %> </td>
+        <td> <%= sale.customer.last_name %> </td>
+        <td> <%= sale.customer.email %> </td>
+        <td> <%= sale.customer.phone_number %> </td>
+        <td> <%= sale.customer.gender %> </td>
+        <td> <%= sale.car.make %> </td>
+        <td> <%= sale.car.model %> </td>
+        <td> <%= sale.car.year %> </td>
+        <td> <%= sale.car.cost_price %> </td>
+        <td> <%= sale.car.sale_markup %> </td>
+        <td> <a href="/sales/delete/<%= sale.id %>" class="ui primary button"> DELETE </a> </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

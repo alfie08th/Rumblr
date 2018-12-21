@@ -1,0 +1,62 @@
+<form class="ui form" method="POST" action="/sales">
+  <h2>Customer Info</h2>
+  <div class="two fields">
+    <div class="field">
+      <label>First Name</label>
+      <input required type="text" name="first_name" placeholder="First Name">
+    </div>
+
+    <div class="field">
+      <label>Last Name</label>
+      <input required type="text" name="last_name" placeholder="Last Name">
+    </div>
+  </div>
+
+  <div class="three fields">
+    <div class="field">
+      <label>Phone</label>
+      <input required type="text" name="phone_number" placeholder="Phone">
+    </div>
+
+    <div class="field">
+      <label>D.O.B</label>
+      <input required type="date" name="dob" placeholder="Date Of Birth">
+    </div>
+
+    <div class="field">
+      <label>Email</label>
+      <input required type="email" name="email" placeholder="Email">
+    </div>
+  </div>
+
+  <h2>Car Info</h2>
+
+  <div class="four fields">
+    <div class="field">
+      <label>Make</label>
+      <input required type="text" name="make" placeholder="Make">
+    </div>
+
+    <div class="field">
+      <label>Model</label>
+      <input required type="text" name="model" placeholder="Model">
+    </div>
+
+    <div class="field">
+      <label>Year</label>
+      <input required type="number" name="year" placeholder="Year">
+    </div>
+
+    <div class="field">
+      <label>Cost Price</label>
+      <input required type="number" name="cost_price" placeholder="Cost Price$">
+    </div>
+
+    <div class="field">
+      <label>Sale Markup</label>
+      <input required type="number" name="sale_markup" placeholder="Sale Markup%">
+    </div>
+  </div>
+
+  <button class="ui button" type="submit">Save</button>
+</form>
