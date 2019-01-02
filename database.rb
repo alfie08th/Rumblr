@@ -27,7 +27,7 @@ else
 require 'sqlite3'
  ActiveRecord::Base.establish_connection(
 	adapter: 'sqlite3'
-	databse: 'db/development.db'
+	database: 'db/development.db'
 	)
 end
 
