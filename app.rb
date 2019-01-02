@@ -19,10 +19,21 @@ require 'csv'
 
 # Connect to a sqlite3 database
 # If you feel like you need to reset it, simply delete the file sqlite makes
-ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3',
-  database: 'db/bakery.db'
-)
+# ActiveRecord::Base.establish_connection(
+#   adapter: 'sqlite3',
+#   database: 'db/bakery.db'
+# )
+
+if ENV['DATABASE_URL']
+gem 'pg'
+ ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+else
+require 'sqlite3'
+ ActiveRecord::Base.establish_connection(
+	adapter: 'sqlite3'
+	databse: 'db/development.db'
+	)
+end
 
 register Sinatra::Reloader
 enable :sessions
@@ -65,9 +76,10 @@ end
 #  erb :my_blog
 # end
 
-get '/sales' do
+get "/readblog" do
   if session[:user_id]
-    @all_sales = Sale.all.reverse
+    @user = User.find(session[:user_id])
+    @all_sales = User.all.reverse
     erb :all
   else
     erb :not_allowed
@@ -75,12 +87,12 @@ get '/sales' do
 
 end
 
-get '/sales/delete/:id' do
-  Sale.find(params["id"]).destroy
-  redirect '/sales'
+get '/readblog/delete/:id' do
+  Comment.find(params["id"]).destroy
+  redirect '/readblog'
 end
 
-post '/sales' do
+post '/readblog' do
   puts ">>>>>"
   puts params
   puts ">>>>>"
@@ -150,7 +162,7 @@ post '/users/signup' do
   if temp_user
     redirect '/login'
   else
-    user = User.create(email: params["email"], password: params["password"])
+    user = User.create(name: params["username"], email: params["email"], dob: timeNow, opening: timeNow, password: params["password"])
     session[:user_id] = user.id
     redirect '/homepage'
   end

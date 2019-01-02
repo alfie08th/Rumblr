@@ -7,38 +7,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+
 
     <div class="ui container">
       <h1>CARDi B</h1>
       <br>
       <% if @user %>
-        <a href="/" class="ui primary button">
-          Home
-        </a>
-        <a href="/user/post" class="ui primary button">
-          Post
-        </a>
-        <a href="/logout" class="ui primary button">
-          Logout
-        </a>
-        HI <%= @user.email %>
-      <% else %>
-        <a href="/login" class="ui primary button">
-          Login
-        </a>
-        <a href="/signup" class="ui primary button">
-          Sign Up
-        </a>
+      <div id="up_big_blog_div">
+        <div id="up_blog_div_one">
+            <a href="/" class="ui primary button showThem">Home</a>
+            <a href="/readblog" class="ui primary button showThem">View All Blog</a>
+            <a href="/logout" class="ui primary button showThem">Logout</a>
+            <br><br>
+            <h5>HI <%= @user.name %></h5>
+        </div>
+        <div id ="up_blog_div_two"></div>
+      </div>
+        <% else %>
+        <div id="down_big_blog_div">
+            <div id="down_blog_div_one">
+                <a href="/login" class="ui primary button showThem">Login</a>
+                <a href="/signup" class="ui primary button showThem">Sign Up</a>
+            </div>
+            <div id ="down_blog_div_two"></div>
+        </div>
       <% end %>
       <br>
       <br>
-
-      <%= yield %>
-
     </div>
 
+    <div id="reveal">
+        <%= yield %>
+      </div>
 
 
   <script
