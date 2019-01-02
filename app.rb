@@ -25,7 +25,7 @@ require 'csv'
 # )
 
 if ENV['DATABASE_URL']
-gem 'pg'
+require 'pg'
  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 else
 require 'sqlite3'
