@@ -1,5 +1,3 @@
-# Based on http://www.jonathanleighton.com/articles/2011/awesome-active-record-bug-reports/
-
 # Run this script with `bundle exec ruby app.rb`
 require 'active_record'
 require 'sinatra'
@@ -65,20 +63,21 @@ post '/user/post' do
   redirect '/allblogs'
 end
 
-get "/allblogs" do
+get '/allblogs' do
   @user = User.find(session[:user_id])
-  @blog_instance = Post.all.reverse
+  @blog_instance = Post.all
   erb :my_user_post
 end
+
 # get '/user/blog/myblog' do
 #   @blog = Blog.where(user_id: session[:user_id])
 #  erb :my_blog
 # end
 
-get "/readblog" do
+get '/readblog' do
   if session[:user_id]
     @user = User.find(session[:user_id])
-    @all_sales = User.all.reverse
+    @all_user = User.all.reverse
     erb :all
   else
     erb :not_allowed
@@ -86,44 +85,51 @@ get "/readblog" do
 
 end
 
-get '/readblog/delete/:id' do
-  Comment.find(params["id"]).destroy
-  redirect '/readblog'
+get '/user/delete/:id' do
+    puts "*****************"
+    puts params["id"]
+    Post.where(user_id: params["id"]).destroy_all
+    User.find(params["id"]).destroy
+    redirect '/readblog'
 end
 
-post '/readblog' do
-  puts ">>>>>"
-  puts params
-  puts ">>>>>"
+# get '/change' do
+#     erb :all
+# end
 
-  # make a customer record
-#   User.create(name: userName, email: "one@one.com", dob: noww,
-#      opening: noww, password: "123456")
-# userName = params["first_name"] + params["last_name"]
-# # dob to determine the horoscope
-#
-# timeNow = Time.now
-#
-#   user_instance = User.create(
-#     name: userName,
-#     email: params["email"],
-#     dob: params["dob"],
-#     opening: now,
-#     phone_number: params["phone_number"],
+# post '/readblog' do
+#   puts ">>>>>"
+#   puts params
+#   puts ">>>>>"
+
+#   # make a customer record
+# #   User.create(name: userName, email: "one@one.com", dob: noww,
+# #      opening: noww, password: "123456")
+# # userName = params["first_name"] + params["last_name"]
+# # # dob to determine the horoscope
+# #
+# # timeNow = Time.now
+# #
+# #   user_instance = User.create(
+# #     name: userName,
+# #     email: params["email"],
+# #     dob: params["dob"],
+# #     opening: now,
+# #     phone_number: params["phone_number"],
+# #   )
+#   # make a car record
+#   car_instance = Car.create(
+#     make: params["make"],
+#     model: params["model"],
+#     year: params["year"],
+#     sale_markup: params["sale_markup"],
+#     cost_price: params["cost_price"]
 #   )
-  # make a car record
-  car_instance = Car.create(
-    make: params["make"],
-    model: params["model"],
-    year: params["year"],
-    sale_markup: params["sale_markup"],
-    cost_price: params["cost_price"]
-  )
-  # make a Transaction with both
-  Sale.create(car: car_instance, customer: customer_instance)
+#   # make a Transaction with both
+#   Sale.create(car: car_instance, customer: customer_instance)
 
-  redirect '/sales'
-end
+#   redirect '/sales'
+# end
 
 get '/login' do
   erb :login
@@ -163,7 +169,7 @@ post '/users/signup' do
   else
     user = User.create(name: params["username"], email: params["email"], dob: timeNow, opening: timeNow, password: params["password"])
     session[:user_id] = user.id
-    redirect '/homepage'
+    redirect '/'
   end
 end
 

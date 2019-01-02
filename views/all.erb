@@ -14,11 +14,12 @@
     </tr>
   </thead>
   <tbody>
-    <% @all_sales.each do |sale| %>
+    <% @all_user.each do |user| %>
       <tr>
-        <td> <%= sale.name %> </td>
-        <td> <%= sale.email %> </td>
-        <td> <a href="/sales/delete/<%= sale.id %>" class="ui primary button"> DELETE </a> </td>
+        <td> <%= user.name %> </td>
+        <td> <%= user.email %> </td>
+        <td> <a href='/user/delete/<%= user.id %>' class="ui primary button"> DELETE </a> </td>
+        readblog
       </tr>
     <% end %>
 

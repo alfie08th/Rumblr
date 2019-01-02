@@ -1,10 +1,9 @@
-
 <% if @blog_instance %>
-  <% for posts in @blog_instance do %>
-    <h3 id="userName"><%= posts.user.name %></h3>
+  <% for post in @blog_instance do %>
+    <h3 id="userName"><%= post.user.name %></h3>
     <div id="my_blog">
-      <img id="my_image" src="<%= posts.image %>">
-      <p id="my_blog_paragraph" ><%= posts.my_post%></p>
+      <img id="my_image" src="<%= post.image %>">
+      <p id="my_blog_paragraph" ><%= post.my_post%></p>
     </div>
   <% end %>
 <% end %>

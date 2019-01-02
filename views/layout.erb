@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Carson Used Car Lot</title>
+  <title>Rumblr</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="/main.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
@@ -13,13 +13,14 @@
 
 
     <div class="ui container">
-      <h1>CARDi B</h1>
+      <h1>Crafted</h1>
       <br>
       <% if @user %>
       <div id="up_big_blog_div">
         <div id="up_blog_div_one">
             <a href="/" class="ui primary button showThem">Home</a>
-            <a href="/readblog" class="ui primary button showThem">View All Blog</a>
+            <a href="/readblog" class="ui primary button showThem">View All Blogs</a>
+            <a href="/user/post" class="ui primary button showThem">Post</a>
             <a href="/logout" class="ui primary button showThem">Logout</a>
             <br><br>
             <h5>HI <%= @user.name %></h5>
