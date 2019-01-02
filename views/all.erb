@@ -4,13 +4,9 @@
       <th>First</th>
       <th>Last</th>
       <th>Email</th>
-      <th>Phone</th>
-      <th>Gender</th>
-      <th>Make</th>
-      <th>Model</th>
-      <th>Year</th>
-      <th>Cost Price</th>
-      <th>Sale Markup</th>
+      <th>D.O.B</th>
+      <th>Opening</th>
+      <th id="delete_title">Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -18,7 +14,10 @@
       <tr>
         <td> <%= user.name %> </td>
         <td> <%= user.email %> </td>
-        <td> <a href='/user/delete/<%= user.id %>' class="ui primary button"> DELETE </a> </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td id="delete_button"> <a href='/user/delete/<%= user.id %>' class="ui primary button"> DELETE </a> </td>
         readblog
       </tr>
     <% end %>
